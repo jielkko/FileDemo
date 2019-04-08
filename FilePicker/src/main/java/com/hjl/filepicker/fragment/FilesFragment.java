@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hjl.filepicker.FilePicker;
 import com.hjl.filepicker.R;
@@ -32,9 +33,11 @@ public class FilesFragment extends Fragment {
 
     private Context mContext;
 
+    public FilesAdapter mAdapter;
+
     private LinearLayout mContainer;
     private RecyclerView mRecyclerView;
-    public FilesAdapter mAdapter;
+    private TextView mHint;
 
 
     private String mListType = "";
@@ -68,6 +71,7 @@ public class FilesFragment extends Fragment {
 
         mContainer = (LinearLayout) view.findViewById(R.id.container);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mHint = (TextView) view.findViewById(R.id.hint);
     }
 
 
@@ -78,7 +82,7 @@ public class FilesFragment extends Fragment {
 
         ((DefaultItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        mAdapter = new FilesAdapter(mContext,mListType);
+        mAdapter = new FilesAdapter(mContext, mListType);
 
 
         mRecyclerView.setAdapter(mAdapter);
@@ -87,11 +91,19 @@ public class FilesFragment extends Fragment {
         mAdapter.setOnItemSelectClickListener(new FilesAdapter.OnItemSelectClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                EventBus.getDefault().post(new MessageEvent(1,""));
+                EventBus.getDefault().post(new MessageEvent(1, ""));
 
 
             }
         });
+
+        if (FilePicker.getInstance().getList(mListType).size() > 0) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mHint.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.GONE);
+            mHint.setVisibility(View.VISIBLE);
+        }
 
     }
 
