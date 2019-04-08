@@ -36,17 +36,35 @@
       <file leaf-file-name="FileGridActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+            <state relative-caret-position="121">
+              <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
               <folding>
-                <element signature="e#3730#3854#0" expanded="true" />
-                <element signature="e#4040#4071#0" expanded="true" />
+                <element signature="e#3712#3836#0" expanded="true" />
+                <element signature="e#4022#4053#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/ui/BaseActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -62,8 +80,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initView</find>
       <find>onPermissionsGranted</find>
+      <find>onPermissionsDenied</find>
+      <find>initView</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -3354,14 +3373,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java" />
         <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/ui/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="102" />
-    <option name="y" value="29" />
+    <option name="x" value="133" />
+    <option name="y" value="52" />
     <option name="width" value="1680" />
     <option name="height" value="953" />
   </component>
@@ -3380,34 +3401,7 @@
             </path>
             <path>
               <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="hjl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="hjl" type="462c0819:PsiDirectoryNode" />
-              <item name="filepicker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
@@ -3418,6 +3412,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="android.project.structure.last.selected" value="app" />
+    <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="73EBB18706218483" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -3554,8 +3550,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="102" y="29" width="1680" height="953" extended-state="0" />
-    <editor active="true" />
+    <frame x="22" y="23" width="1680" height="953" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Android Profiler" />
@@ -3597,17 +3592,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
-          <folding>
-            <element signature="e#3730#3854#0" expanded="true" />
-            <element signature="e#4040#4071#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/ui/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -3615,6 +3599,31 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
+          <folding>
+            <element signature="e#3712#3836#0" expanded="true" />
+            <element signature="e#4022#4053#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
