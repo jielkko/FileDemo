@@ -8,7 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
+    <style name="FileAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#393A3F</item>
+        <item name="colorPrimaryDark">#393A3F</item>
+        <item name="colorAccent">#393A3F</item>
+
         <item name="windowActionBar">false</item>
         <!-- 隐藏标题栏 -->
         <item name="windowNoTitle">true</item>
