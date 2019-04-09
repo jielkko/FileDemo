@@ -148,8 +148,8 @@ public class FilesAdapter extends RecyclerView.Adapter {
 
 
             Resources resources = view.getResources();
-            mIcCheckBoxChecked = resources.getDrawable(R.drawable.image_check_blue1);
-            mIcCheckBoxNormal = resources.getDrawable(R.drawable.image_check_blue0);
+            mIcCheckBoxChecked = resources.getDrawable(R.drawable.file_check_blue1);
+            mIcCheckBoxNormal = resources.getDrawable(R.drawable.file_check_blue0);
         }
     }
 

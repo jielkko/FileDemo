@@ -18,27 +18,27 @@ public class FileUtil {
 
 
         if(orgName == null || orgName.equals("")){
-            return R.drawable.ic_other;
+            return R.drawable.file_other;
         }
         /* 取得扩展名 */
         String end = orgName;
         /* 依扩展名的类型决定MimeType */
         if (end.indexOf("jpg") != -1 || end.indexOf("gif") != -1 || end.indexOf("png") != -1 || end.indexOf("jpeg") != -1) {
-            return R.drawable.ic_pic;
+            return R.drawable.file_pic;
         } else if (end.indexOf("doc") != -1 || end.indexOf("docx") != -1) {
-            return R.drawable.ic_word;
+            return R.drawable.file_word;
         } else if (end.indexOf("ppt") != -1 || end.indexOf("pptx") != -1) {
-            return R.drawable.ic_ppt;
+            return R.drawable.file_ppt;
         } else if (end.indexOf("xls") != -1 || end.indexOf("xlsx") != -1) {
-            return R.drawable.ic_xls;
+            return R.drawable.file_xls;
         } else if (end.indexOf("pdf") != -1) {
-            return R.drawable.ic_pdf;
+            return R.drawable.file_pdf;
         } else if (end.indexOf("zip") != -1 || end.indexOf("rar") != -1) {
-            return R.drawable.ic_zip;
+            return R.drawable.file_zip;
         } else if (end.indexOf("txt") != -1) {
-            return R.drawable.ic_txt;
+            return R.drawable.file_txt;
         } else {
-            return R.drawable.ic_other;
+            return R.drawable.file_other;
         }
     }
 

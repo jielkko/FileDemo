@@ -30,14 +30,14 @@
                 android:id="@+id/isChoose_icon"
                 android:layout_width="24dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/image_check_blue0" />
+                android:src="@drawable/file_check_blue0" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            tools:src="@drawable/ic_pdf" />
+            tools:src="@drawable/file_pdf" />
 
         <LinearLayout
             android:layout_width="match_parent"
