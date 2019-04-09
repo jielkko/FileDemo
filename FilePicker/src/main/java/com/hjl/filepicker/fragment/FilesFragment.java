@@ -84,7 +84,6 @@ public class FilesFragment extends Fragment {
 
         mAdapter = new FilesAdapter(mContext, mListType);
 
-
         mRecyclerView.setAdapter(mAdapter);
 
         //选择
@@ -96,6 +95,7 @@ public class FilesFragment extends Fragment {
 
             }
         });
+
 
         if (FilePicker.getInstance().getList(mListType).size() > 0) {
             mRecyclerView.setVisibility(View.VISIBLE);
