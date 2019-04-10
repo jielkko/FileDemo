@@ -33,11 +33,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileGridActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FileGridActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="166" selection-start-line="166" selection-end-line="166" />
+            <state relative-caret-position="781">
+              <caret line="259" lean-forward="true" selection-start-line="259" selection-end-line="259" />
+              <folding>
+                <element signature="e#2650#2792#0" expanded="true" />
+                <element signature="e#2791#2792#0" expanded="true" />
+                <element signature="e#2829#3300#0" expanded="true" />
+                <element signature="e#3299#3300#0" expanded="true" />
+                <element signature="e#3767#3891#0" expanded="true" />
+                <element signature="e#4077#4108#0" expanded="true" />
+                <element signature="e#5982#6247#0" expanded="true" />
+                <element signature="e#6246#6247#0" expanded="true" />
+                <element signature="e#6818#13336#0" expanded="true" />
+                <element signature="e#13335#13336#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hjl/filedemo/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -45,21 +66,12 @@
       <file leaf-file-name="FilesFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/fragment/FilesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
+            <state relative-caret-position="66">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
               <folding>
                 <element signature="e#2457#2683#0" expanded="true" />
                 <element signature="e#2682#2683#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FilePicker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FilePicker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-404">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -82,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FilePicker/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -131,6 +143,9 @@
       <find>onPermissionsGranted</find>
       <find>onPermissionsDenied</find>
       <find>initView</find>
+      <find>doc</find>
+      <find>123</find>
+      <find>initImage</find>
       <find>initListView</find>
     </findStrings>
   </component>
@@ -3423,21 +3438,22 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/ui/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/FilePicker/src/main/res/layout/fragment_project_list.xml" />
         <option value="$PROJECT_DIR$/FilePicker/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/FilePicker/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/fragment/FilesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hjl/filedemo/MainActivity.java" />
         <option value="$PROJECT_DIR$/FilePicker/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="32" />
+    <option name="x" value="34" />
+    <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="953" />
   </component>
@@ -3457,45 +3473,32 @@
             <path>
               <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
               <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="hjl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="hjl" type="462c0819:PsiDirectoryNode" />
+              <item name="filedemo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
               <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="FilePicker" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="xml" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="FileDemo" type="1abcf292:AndroidViewProjectNode" />
@@ -3648,7 +3651,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="223" y="23" width="1680" height="953" extended-state="0" />
+    <frame x="34" y="23" width="1680" height="953" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -3665,13 +3669,13 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32943925" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3995327" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.41705608" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -3687,7 +3691,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="11" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -3695,6 +3699,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
+          <folding>
+            <element signature="e#2650#2792#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2829#3300#0" expanded="true" />
+            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3767#3891#0" expanded="true" />
+            <element signature="e#4077#4108#0" expanded="true" />
+            <element signature="e#5982#6247#0" expanded="true" />
+            <element signature="e#6246#6247#0" expanded="true" />
+            <element signature="e#6818#13336#0" expanded="true" />
+            <element signature="e#13335#13336#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3730,6 +3746,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="121" column="59" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3754,13 +3773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hjl/filedemo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="53" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FilePicker/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -3778,20 +3790,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="166" selection-start-line="166" selection-end-line="166" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FilePicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-404">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FilePicker/src/main/res/layout/fragment_files_list.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -3802,14 +3800,27 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/fragment/FilesFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
-          <folding>
-            <element signature="e#2457#2683#0" expanded="true" />
-            <element signature="e#2682#2683#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FilePicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -3827,20 +3838,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/fragment/FilesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        <state relative-caret-position="66">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+          <folding>
+            <element signature="e#2457#2683#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hjl/filedemo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/FilePicker/src/main/java/com/hjl/filepicker/FileGridActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="781">
+          <caret line="259" lean-forward="true" selection-start-line="259" selection-end-line="259" />
+          <folding>
+            <element signature="e#2650#2792#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2829#3300#0" expanded="true" />
+            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3767#3891#0" expanded="true" />
+            <element signature="e#4077#4108#0" expanded="true" />
+            <element signature="e#5982#6247#0" expanded="true" />
+            <element signature="e#6246#6247#0" expanded="true" />
+            <element signature="e#6818#13336#0" expanded="true" />
+            <element signature="e#13335#13336#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

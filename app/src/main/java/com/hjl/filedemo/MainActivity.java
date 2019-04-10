@@ -1,6 +1,9 @@
 package com.hjl.filedemo;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +17,16 @@ import com.hjl.filepicker.FileGridActivity;
 import com.hjl.filepicker.FilePicker;
 import com.hjl.filepicker.bean.FileItem;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String TAG = "MainActivity";
 
     private int RESULT_CODE = 100;
     private Button mBtn1;
@@ -38,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, FileGridActivity.class);
                 startActivityForResult(intent, RESULT_CODE);
+
             }
         });
 
@@ -54,4 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -225,27 +227,30 @@ public class FileGridActivity extends BaseActivity {
 
                 FilePicker.getInstance().clearList();
 
-               /* String[] selectionArgs = new String[]{
-                        "application/msword",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "application/pdf",
-                        "application/vnd.ms-powerpoint",
-                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                        "application/vnd.ms-excel",
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                };*/
+
+
                 String[] selectionArgs = FilePicker.getArgs("doc,ppt,xls,pdf");
+
                 //相当于我们常用sql where 后面的写法
-                String selection = MediaStore.Files.FileColumns.MIME_TYPE + "= ? ";
-                for (int i = 0; i < selectionArgs.length; i++) {
-                    selection = selection + " or " + MediaStore.Files.FileColumns.MIME_TYPE + " = ? ";
-                }
+                String selection = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.doc'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.docx'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.xls'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.xlsx'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.ppt'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.pptx'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.pdf'"
+                        + ")";
+
 
 
                 Cursor cursor = getContentResolver().query(
                         MediaStore.Files.getContentUri("external"),
                         FILE_PROJECTION,
-                        selection, selectionArgs, FILE_PROJECTION[4] + " DESC");
+                        selection, null, FILE_PROJECTION[4] + " DESC");
+
+              /*  Cursor cursor = getContentResolver().query(
+                        MediaStore.Files.getContentUri("external"),null, null, null, FILE_PROJECTION[4] + " DESC");
+*/
 
                 while (cursor.moveToNext()) {
 
@@ -296,6 +301,25 @@ public class FileGridActivity extends BaseActivity {
                     if (imageName.indexOf("pdf") != -1) {
                         FilePicker.getInstance().pdfList.add(fileItem);
                     }
+
+                 /*  if(imageMimeType!=null){
+
+                       if (imageMimeType.indexOf("application/msword") != -1 || imageMimeType.indexOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document") != -1) {
+                           FilePicker.getInstance().docList.add(fileItem);
+                       }
+                       if (imageMimeType.indexOf("application/vnd.ms-powerpoint") != -1 || imageMimeType.indexOf("application/vnd.openxmlformats-officedocument.presentationml.presentation") != -1) {
+                           FilePicker.getInstance().pptList.add(fileItem);
+                       }
+                       if (imageMimeType.indexOf("application/vnd.ms-excel") != -1 || imageMimeType.indexOf("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") != -1) {
+                           FilePicker.getInstance().xlsList.add(fileItem);
+                       }
+                       if (imageMimeType.indexOf("application/pdf") != -1) {
+                           FilePicker.getInstance().pdfList.add(fileItem);
+                       }
+                   }*/
+
+
+
                 }
 
 
