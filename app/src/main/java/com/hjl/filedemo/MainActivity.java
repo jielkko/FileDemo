@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,19 +38,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //一般在Application初始化配置一次就可以
+
+        FilePicker.getInstance().selectLimit = 9;
+        FilePicker.getInstance().getFolderData();
         mBtn1 = (Button) findViewById(R.id.btn1);
         mBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //一般在Application初始化配置一次就可以
-                FilePicker filePicker = FilePicker.getInstance();
-                filePicker.selectLimit = 3;
-
-                Intent intent = new Intent(MainActivity.this, FileGridActivity.class);
-                startActivityForResult(intent, RESULT_CODE);
-
+                FilePicker.getInstance().goSelectFile(MainActivity.this,RESULT_CODE);
             }
         });
+
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 

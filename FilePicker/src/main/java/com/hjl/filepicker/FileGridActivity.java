@@ -1,6 +1,7 @@
 package com.hjl.filepicker;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.mbms.FileInfo;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,6 +29,7 @@ import com.hjl.filepicker.fragment.FilesFragment;
 import com.hjl.filepicker.fragment.fragmentAdapter;
 import com.hjl.filepicker.ui.BaseActivity;
 import com.hjl.filepicker.utils.DataUtil;
+import com.hjl.filepicker.utils.FileUtil;
 import com.hjl.filepicker.view.CustomViewPager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,6 +41,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FileGridActivity extends BaseActivity {
@@ -64,6 +68,7 @@ public class FileGridActivity extends BaseActivity {
     private TabLayout mTabLayout;
     private CustomViewPager mViewPager;
 
+    private ProgressDialog progressDialog;
 
     private void initFindViewById() {
         mBtnBack = (ImageView) findViewById(R.id.btn_back);
@@ -77,6 +82,7 @@ public class FileGridActivity extends BaseActivity {
 
     @Override
     public int intiLayout() {
+
         //设置子类的布局
         return R.layout.activity_file_grid;
     }
@@ -91,7 +97,20 @@ public class FileGridActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        initImage();
+        //initFiles();
+       /* progressDialog = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
+        progressDialog.setMessage("正在加载中...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();*/
+       /* new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                getFolderData();
+            }
+        }.start();*/
+        FilePicker.getInstance().mSelectedFiles.clear();
+
         initBtnOk();
     }
 
@@ -116,10 +135,12 @@ public class FileGridActivity extends BaseActivity {
         });
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        handler.removeMessages(1);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -198,6 +219,8 @@ public class FileGridActivity extends BaseActivity {
                 mFragment3.RefreshDate();
                 mFragment4.RefreshDate();
                 //mAdapter.notifyDataSetChanged();
+
+
             }
         }
     };
@@ -210,64 +233,10 @@ public class FileGridActivity extends BaseActivity {
             MediaStore.Files.FileColumns.DATE_ADDED
     };    //图片被添加的时间，long型  1450518608
 
-    /**
-     * 获取指定目录内所有文件路径
-     * @param dirPath 需要查询的文件目录
-     * @param _type 查询类型，比如mp3什么的
-     */
-    public static JSONArray getAllFiles(String dirPath, String _type) {
 
-        File f = new File(dirPath);
-        if (!f.exists()) {//判断路径是否存在
-            return null;
-        }
 
-        File[] files = f.listFiles();
 
-        if(files==null){//判断权限
-            return null;
-        }
-
-        JSONArray fileList = new JSONArray();
-        for (File _file : files) {//遍历目录
-            if(_file.isFile() && _file.getName().endsWith(_type)){
-                String _name=_file.getName();
-                String filePath = _file.getAbsolutePath();//获取文件路径
-                String fileName = _file.getName().substring(0,_name.length()-4);//获取文件名
-//                Log.d("LOGCAT","fileName:"+fileName);
-//                Log.d("LOGCAT","filePath:"+filePath);
-                try {
-                    JSONObject _fInfo = new JSONObject();
-                    _fInfo.put("name", fileName);
-                    _fInfo.put("path", filePath);
-                    fileList.put(_fInfo);
-                }catch (Exception e){
-                }
-            } else if(_file.isDirectory()){//查询子目录
-                getAllFiles(_file.getAbsolutePath(), _type);
-            } else{
-            }
-        }
-
-        return fileList;
-    }
-    private void initFiles(){
-        Log.d(TAG, "搜索开始时间: "+DataUtil.getNewName());
-        getAllFiles(Environment.getExternalStorageDirectory().getAbsolutePath(),".doc");
-        Log.d(TAG, "搜索结束时间: "+DataUtil.getNewName());
-       /* new LocalFileLoader(this, LocalFileLoader.TYPE_WORD).search(new LocalFileLoader.LocalFileLoadListener() {
-            @Override
-            public void loadComplete(ArrayList<String> files) {
-                StringBuilder stringBuilder = new StringBuilder();
-                for (String str : files) {
-                    Log.d(TAG, "loadComplete: "+str);
-                }
-
-            }
-        }, "");*/
-    }
-
-    private void initImage() {
+    private void initFiles() {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
         new Thread(new Runnable() {
             @Override
