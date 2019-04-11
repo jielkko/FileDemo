@@ -40,6 +40,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -91,6 +92,10 @@ public class FileGridActivity extends BaseActivity {
     public void initView() {
         EventBus.getDefault().register(this);
         mActivity = FileGridActivity.this;
+
+
+
+
         initFindViewById();
         initTabView();
     }
@@ -366,6 +371,8 @@ public class FileGridActivity extends BaseActivity {
                 }
 
                 Log.d(TAG, "搜索结束时间: "+DataUtil.getNewName());
+
+
                 Message message = new Message();
                 message.what = 1;
                 handler.sendMessage(message);

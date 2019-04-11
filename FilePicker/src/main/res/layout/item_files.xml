@@ -58,6 +58,16 @@
                 android:ellipsize="end"
                 android:textSize="14sp"
                 android:text="张三丰" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp"
+                android:text="2019-02-12 12:33:45" />
         </LinearLayout>
 
     </LinearLayout>

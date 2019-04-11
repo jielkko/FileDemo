@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.hjl.filepicker.FilePicker;
 import com.hjl.filepicker.R;
 import com.hjl.filepicker.bean.FileItem;
+import com.hjl.filepicker.utils.DataUtil;
 import com.hjl.filepicker.utils.FileUtil;
 
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class FilesAdapter extends RecyclerView.Adapter {
             final ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mName.setText(item.name);
             itemViewHolder.mIcon.setImageResource(FileUtil.getFileIcon(item.name));
+            itemViewHolder.mTime.setText(DataUtil.timeStampToDateString(item.addTime));
 
            /* itemViewHolder.mContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -146,6 +148,7 @@ public class FilesAdapter extends RecyclerView.Adapter {
         private ImageView mIsChooseIcon;
         private ImageView mIcon;
         private TextView mName;
+        private TextView mTime;
 
 
 
@@ -160,6 +163,7 @@ public class FilesAdapter extends RecyclerView.Adapter {
             mIsChooseIcon = (ImageView) view.findViewById(R.id.isChoose_icon);
             mIcon = (ImageView) view.findViewById(R.id.icon);
             mName = (TextView) view.findViewById(R.id.name);
+            mTime = (TextView) view.findViewById(R.id.time);
 
 
             Resources resources = view.getResources();

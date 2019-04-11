@@ -13,6 +13,8 @@ import com.hjl.filepicker.utils.DataUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -155,34 +157,37 @@ public class FilePicker {
         FilePicker.getInstance().pdfList.clear();
 
     }
+
     public static void clearSelectFiles() {
         FilePicker.getInstance().mSelectedFiles.clear();
-        for(FileItem item :  FilePicker.getInstance().mAllFiles){
+        for (FileItem item : FilePicker.getInstance().mAllFiles) {
             item.isSelected = 0;
         }
 
 
     }
-    ProgressDialog  progressDialog;
-    public void goSelectFile(final Activity mActivity, final int RESULT_CODE){
 
-        if(progressDialog == null){
+    ProgressDialog progressDialog;
+
+    public void goSelectFile(final Activity mActivity, final int RESULT_CODE) {
+
+        if (progressDialog == null) {
             progressDialog = new ProgressDialog(mActivity, ProgressDialog.THEME_HOLO_LIGHT);
             progressDialog.setMessage("正在加载中...");
             progressDialog.setCanceledOnTouchOutside(false);
         }
         progressDialog.show();
 
-        if(!FilePicker.getInstance().isLoadingFolder){
+        if (!FilePicker.getInstance().isLoadingFolder) {
             progressDialog.dismiss();
             Intent intent = new Intent(mActivity, FileGridActivity.class);
             mActivity.startActivityForResult(intent, RESULT_CODE);
 
-        }else{
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    goSelectFile(mActivity,RESULT_CODE);
+                    goSelectFile(mActivity, RESULT_CODE);
                 }
             }, 1000);//3秒后执行Runnable中的run方法
 
@@ -193,6 +198,7 @@ public class FilePicker {
 
     public Boolean isLoadingFolder = false;
     public Boolean isUpdateDate = false;
+
     /**
      * 遍历文件夹中资源
      */
@@ -207,6 +213,7 @@ public class FilePicker {
         }.start();
 
     }
+
     /**
      * 非递归
      *
@@ -215,11 +222,11 @@ public class FilePicker {
     public void scanDirNoRecursion(String path) {
         FilePicker.getInstance().clearList();
 
-/*        ArrayList<FileItem> mAllFiles1 = new ArrayList<>();    //选中的图片集合
-        ArrayList<FileItem> docList1 = new ArrayList<>();    //集合
-        ArrayList<FileItem> pptList1 = new ArrayList<>();    //集合
-        ArrayList<FileItem> xlsList1 = new ArrayList<>();    //集合
-        ArrayList<FileItem> pdfList1 = new ArrayList<>();    //集合*/
+        List<FileItem> mAllFiles1 = new ArrayList<>();    //选中的图片集合
+        List<FileItem> docList1 = new ArrayList<>();    //集合
+        List<FileItem> pptList1 = new ArrayList<>();    //集合
+        List<FileItem> xlsList1 = new ArrayList<>();    //集合
+        List<FileItem> pdfList1 = new ArrayList<>();    //集合
 
 
         LinkedList list = new LinkedList();
@@ -260,22 +267,21 @@ public class FilePicker {
 
                         String imageName = fileItem.name;
 
-
-                       FilePicker.getInstance().mAllFiles.add(fileItem);
-                      if (imageName.indexOf("doc") != -1 || imageName.indexOf("docx") != -1) {
+                        FilePicker.getInstance().mAllFiles.add(fileItem);
+                        if (imageName.indexOf(".doc") != -1 || imageName.indexOf(".docx") != -1) {
                             FilePicker.getInstance().docList.add(fileItem);
                         }
-                        if (imageName.indexOf("ppt") != -1 || imageName.indexOf("pptx") != -1) {
+                        if (imageName.indexOf(".ppt") != -1 || imageName.indexOf(".pptx") != -1) {
                             FilePicker.getInstance().pptList.add(fileItem);
                         }
-                        if (imageName.indexOf("xls") != -1 || imageName.indexOf("xlsx") != -1) {
+                        if (imageName.indexOf(".xls") != -1 || imageName.indexOf(".xlsx") != -1) {
                             FilePicker.getInstance().xlsList.add(fileItem);
                         }
-                        if (imageName.indexOf("pdf") != -1) {
+                        if (imageName.indexOf(".pdf") != -1) {
                             FilePicker.getInstance().pdfList.add(fileItem);
                         }
 
-                      /*  if (imageName.indexOf("doc") != -1 || imageName.indexOf("docx") != -1) {
+                    /*    if (imageName.indexOf("doc") != -1 || imageName.indexOf("docx") != -1) {
                             docList1.add(fileItem);
                         }
                         if (imageName.indexOf("ppt") != -1 || imageName.indexOf("pptx") != -1) {
@@ -291,15 +297,29 @@ public class FilePicker {
                 }
 
                 isLoadingFolder = false;
-          /*      FilePicker.getInstance().mAllFiles.addAll(mAllFiles1);
-                FilePicker.getInstance().docList.addAll(docList1);
-                FilePicker.getInstance().pptList.addAll(pptList1);
-                FilePicker.getInstance().xlsList.addAll(xlsList1);
-                FilePicker.getInstance().pdfList.addAll(pdfList1);*/
+
+
+
+                Collections.sort(FilePicker.getInstance().docList, com);
+                Collections.sort(FilePicker.getInstance().pptList, com);
+                Collections.sort(FilePicker.getInstance().xlsList, com);
+                Collections.sort(FilePicker.getInstance().pdfList, com);
 
             } else {
                 System.out.println(tmp);
             }
         }
     }
+
+
+    Comparator<FileItem> com = new Comparator<FileItem>() { //匿名内部类
+
+        public int compare(FileItem o1, FileItem o2) {
+            // TODO Auto-generated method stub
+
+            //int result = (int)(another.getAddTime() - this.getAddTime()); // 投票按降序
+            //int result = (int)(this.getAddTime() - another.getAddTime()); // 投票按升序
+            return (int) (o1.getAddTime() - o2.getAddTime());
+        }
+    };
 }
