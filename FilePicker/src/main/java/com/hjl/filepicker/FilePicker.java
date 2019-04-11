@@ -264,9 +264,12 @@ public class FilePicker {
                         }
                         fileItem.addTime = file[i].lastModified();
 
-
-                        String imageName = fileItem.name;
-
+                        String imageName = "";
+                        if (fileItem.name.length() >= 5) {
+                            imageName = fileItem.name.substring(fileItem.name.length() - 5, fileItem.name.length());
+                        }else{
+                            imageName = fileItem.name;
+                        }
                         FilePicker.getInstance().mAllFiles.add(fileItem);
                         if (imageName.indexOf(".doc") != -1 || imageName.indexOf(".docx") != -1) {
                             FilePicker.getInstance().docList.add(fileItem);
@@ -299,7 +302,6 @@ public class FilePicker {
                 isLoadingFolder = false;
 
 
-
                 Collections.sort(FilePicker.getInstance().docList, com);
                 Collections.sort(FilePicker.getInstance().pptList, com);
                 Collections.sort(FilePicker.getInstance().xlsList, com);
@@ -319,7 +321,7 @@ public class FilePicker {
 
             //int result = (int)(another.getAddTime() - this.getAddTime()); // 投票按降序
             //int result = (int)(this.getAddTime() - another.getAddTime()); // 投票按升序
-            return (int) (o1.getAddTime() - o2.getAddTime());
+            return (int) (o2.getAddTime() - o1.getAddTime());
         }
     };
 }
