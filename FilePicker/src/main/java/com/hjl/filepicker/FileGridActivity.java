@@ -86,11 +86,12 @@ public class FileGridActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         mActivity = FileGridActivity.this;
         initFindViewById();
+        initTabView();
     }
 
     @Override
     protected void initData() {
-        initFiles();
+        initImage();
         initBtnOk();
     }
 
@@ -192,7 +193,10 @@ public class FileGridActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) {
-                initTabView();
+                mFragment1.RefreshDate();
+                mFragment2.RefreshDate();
+                mFragment3.RefreshDate();
+                mFragment4.RefreshDate();
                 //mAdapter.notifyDataSetChanged();
             }
         }
@@ -268,7 +272,7 @@ public class FileGridActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
+                Log.d(TAG, "搜索开始时间: "+DataUtil.getNewName());
 //                结果：
 //                doc :: application/msword
 //                docx :: application/vnd.openxmlformats-officedocument.wordprocessingml.document
@@ -288,7 +292,15 @@ public class FileGridActivity extends BaseActivity {
 
 
 
-                String[] selectionArgs = FilePicker.getArgs("doc,ppt,xls,pdf");
+                String[] selectionArgs = new String[]{
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "application/vnd.ms-powerpoint",
+                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                        "application/vnd.ms-excel",
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "application/pdf"
+                };
 
                 //相当于我们常用sql where 后面的写法
                 String selection = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.doc'"
@@ -300,12 +312,14 @@ public class FileGridActivity extends BaseActivity {
                         + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.pdf'"
                         + ")";
 
+               /* String selection = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.doc'"
+                        + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.docx'"
+                        + ")";*/
 
 
                 Cursor cursor = getContentResolver().query(
                         MediaStore.Files.getContentUri("external"),
-                        FILE_PROJECTION,
-                        selection, null, FILE_PROJECTION[4] + " DESC");
+                        FILE_PROJECTION, selection, null, FILE_PROJECTION[4] + " DESC");
 
               /*  Cursor cursor = getContentResolver().query(
                         MediaStore.Files.getContentUri("external"),null, null, null, FILE_PROJECTION[4] + " DESC");
@@ -330,14 +344,14 @@ public class FileGridActivity extends BaseActivity {
                     Long imageAddTime = cursor.getLong(cursor.getColumnIndexOrThrow(FILE_PROJECTION[4]));
 
 
-                    Log.d(TAG, "************************************");
+                  /*  Log.d(TAG, "************************************");
                     Log.d(TAG, "imageName: " + imageName);
                     Log.d(TAG, "imagePath: " + imagePath);
                     Log.d(TAG, "imageSize: " + imageSize);
                     Log.d(TAG, "imageMimeType: " + imageMimeType);
                     Log.d(TAG, "文件生成日期: " + imageAddTime);
                     Log.d(TAG, "************************************");
-
+*/
 
                     //封装实体
                     FileItem fileItem = new FileItem();
@@ -381,7 +395,7 @@ public class FileGridActivity extends BaseActivity {
 
                 }
 
-
+                Log.d(TAG, "搜索结束时间: "+DataUtil.getNewName());
                 Message message = new Message();
                 message.what = 1;
                 handler.sendMessage(message);

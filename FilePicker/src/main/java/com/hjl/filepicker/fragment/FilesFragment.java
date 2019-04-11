@@ -1,7 +1,10 @@
 package com.hjl.filepicker.fragment;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Message;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -9,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +22,13 @@ import android.widget.TextView;
 import com.hjl.filepicker.FilePicker;
 import com.hjl.filepicker.R;
 import com.hjl.filepicker.adapter.FilesAdapter;
+import com.hjl.filepicker.bean.FileItem;
 import com.hjl.filepicker.bean.MessageEvent;
+import com.hjl.filepicker.utils.DataUtil;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 
 
 /**
@@ -96,6 +104,10 @@ public class FilesFragment extends Fragment {
         });
 
 
+    }
+
+    //刷新数据
+    public void  RefreshDate(){
         if (FilePicker.getInstance().getList(mListType).size() > 0) {
             mRecyclerView.setVisibility(View.VISIBLE);
             mHint.setVisibility(View.GONE);
@@ -103,8 +115,7 @@ public class FilesFragment extends Fragment {
             mRecyclerView.setVisibility(View.GONE);
             mHint.setVisibility(View.VISIBLE);
         }
-
+        mAdapter.notifyDataSetChanged();
     }
-
 
 }

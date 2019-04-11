@@ -13,7 +13,7 @@ import java.util.Date;
 public class DataUtil {
     private static final String TAG = "DataStringUtil";
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
 
 
     // 获取当天时间
