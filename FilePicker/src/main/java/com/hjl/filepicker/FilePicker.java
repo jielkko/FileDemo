@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FilePicker {
 
@@ -167,19 +169,11 @@ public class FilePicker {
 
     }
 
-    ProgressDialog progressDialog;
+
 
     public void goSelectFile(final Activity mActivity, final int RESULT_CODE) {
 
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(mActivity, ProgressDialog.THEME_HOLO_LIGHT);
-            progressDialog.setMessage("正在加载中...");
-            progressDialog.setCanceledOnTouchOutside(false);
-        }
-        progressDialog.show();
-
         if (!FilePicker.getInstance().isLoadingFolder) {
-            progressDialog.dismiss();
             Intent intent = new Intent(mActivity, FileGridActivity.class);
             mActivity.startActivityForResult(intent, RESULT_CODE);
 
@@ -198,19 +192,33 @@ public class FilePicker {
 
     public Boolean isLoadingFolder = false;
     public Boolean isUpdateDate = false;
-
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
     /**
      * 遍历文件夹中资源
      */
     public void getFolderData() {
-        isLoadingFolder = true;
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
-            }
-        }.start();
+
+        if(!isLoadingFolder){
+            isLoadingFolder = true;
+
+
+          /*  new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //需要在子线程中处理的逻辑
+                    scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
+                }
+            }).start();*/
+
+            Runnable syncRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
+                }
+            };
+            executorService.execute(syncRunnable);
+        }
+
 
     }
 
@@ -222,11 +230,11 @@ public class FilePicker {
     public void scanDirNoRecursion(String path) {
         FilePicker.getInstance().clearList();
 
-        List<FileItem> mAllFiles1 = new ArrayList<>();    //选中的图片集合
+      /*  List<FileItem> mAllFiles1 = new ArrayList<>();    //选中的图片集合
         List<FileItem> docList1 = new ArrayList<>();    //集合
         List<FileItem> pptList1 = new ArrayList<>();    //集合
         List<FileItem> xlsList1 = new ArrayList<>();    //集合
-        List<FileItem> pdfList1 = new ArrayList<>();    //集合
+        List<FileItem> pdfList1 = new ArrayList<>();    //集合*/
 
 
         LinkedList list = new LinkedList();
@@ -299,14 +307,14 @@ public class FilePicker {
                     }
                 }
 
-                isLoadingFolder = false;
+
 
 
                 Collections.sort(FilePicker.getInstance().docList, com);
                 Collections.sort(FilePicker.getInstance().pptList, com);
                 Collections.sort(FilePicker.getInstance().xlsList, com);
                 Collections.sort(FilePicker.getInstance().pdfList, com);
-
+                isLoadingFolder = false;
             } else {
                 System.out.println(tmp);
             }
