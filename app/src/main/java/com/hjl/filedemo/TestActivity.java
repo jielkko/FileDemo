@@ -1,6 +1,7 @@
 package com.hjl.filedemo;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.hjl.filepicker.FileGridActivity;
 import com.hjl.filepicker.FilePicker;
 import com.hjl.filepicker.bean.FileItem;
 
@@ -36,10 +38,28 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FilePicker.getInstance().goSelectFile(TestActivity.this,RESULT_CODE);
+
+                goFile();
+
             }
         });
 
+    }
+
+    private void goFile(){
+        if (!FilePicker.getInstance().isLoadingFolder) {
+            Intent intent = new Intent(TestActivity.this, FileGridActivity.class);
+            startActivityForResult(intent, RESULT_CODE);
+
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    goFile();
+                }
+            }, 1000);//3秒后执行Runnable中的run方法
+
+        }
     }
 
 
