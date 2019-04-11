@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/top_bar"
-        layout="@layout/include_top_bar"/>
+        layout="@layout/files_top_bar"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"

@@ -26,11 +26,14 @@ import com.hjl.filepicker.bean.MessageEvent;
 import com.hjl.filepicker.fragment.FilesFragment;
 import com.hjl.filepicker.fragment.fragmentAdapter;
 import com.hjl.filepicker.ui.BaseActivity;
+import com.hjl.filepicker.utils.DataUtil;
 import com.hjl.filepicker.view.CustomViewPager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -87,7 +90,7 @@ public class FileGridActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        initImage();
+        initFiles();
         initBtnOk();
     }
 
@@ -203,6 +206,62 @@ public class FileGridActivity extends BaseActivity {
             MediaStore.Files.FileColumns.DATE_ADDED
     };    //图片被添加的时间，long型  1450518608
 
+    /**
+     * 获取指定目录内所有文件路径
+     * @param dirPath 需要查询的文件目录
+     * @param _type 查询类型，比如mp3什么的
+     */
+    public static JSONArray getAllFiles(String dirPath, String _type) {
+
+        File f = new File(dirPath);
+        if (!f.exists()) {//判断路径是否存在
+            return null;
+        }
+
+        File[] files = f.listFiles();
+
+        if(files==null){//判断权限
+            return null;
+        }
+
+        JSONArray fileList = new JSONArray();
+        for (File _file : files) {//遍历目录
+            if(_file.isFile() && _file.getName().endsWith(_type)){
+                String _name=_file.getName();
+                String filePath = _file.getAbsolutePath();//获取文件路径
+                String fileName = _file.getName().substring(0,_name.length()-4);//获取文件名
+//                Log.d("LOGCAT","fileName:"+fileName);
+//                Log.d("LOGCAT","filePath:"+filePath);
+                try {
+                    JSONObject _fInfo = new JSONObject();
+                    _fInfo.put("name", fileName);
+                    _fInfo.put("path", filePath);
+                    fileList.put(_fInfo);
+                }catch (Exception e){
+                }
+            } else if(_file.isDirectory()){//查询子目录
+                getAllFiles(_file.getAbsolutePath(), _type);
+            } else{
+            }
+        }
+
+        return fileList;
+    }
+    private void initFiles(){
+        Log.d(TAG, "搜索开始时间: "+DataUtil.getNewName());
+        getAllFiles(Environment.getExternalStorageDirectory().getAbsolutePath(),".doc");
+        Log.d(TAG, "搜索结束时间: "+DataUtil.getNewName());
+       /* new LocalFileLoader(this, LocalFileLoader.TYPE_WORD).search(new LocalFileLoader.LocalFileLoadListener() {
+            @Override
+            public void loadComplete(ArrayList<String> files) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (String str : files) {
+                    Log.d(TAG, "loadComplete: "+str);
+                }
+
+            }
+        }, "");*/
+    }
 
     private void initImage() {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
