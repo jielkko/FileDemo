@@ -155,9 +155,17 @@ public class FilePicker {
         FilePicker.getInstance().pdfList.clear();
 
     }
+    public static void clearSelectFiles() {
+        FilePicker.getInstance().mSelectedFiles.clear();
+        for(FileItem item :  FilePicker.getInstance().mAllFiles){
+            item.isSelected = 0;
+        }
 
+
+    }
     ProgressDialog  progressDialog;
     public void goSelectFile(final Activity mActivity, final int RESULT_CODE){
+
         if(progressDialog == null){
             progressDialog = new ProgressDialog(mActivity, ProgressDialog.THEME_HOLO_LIGHT);
             progressDialog.setMessage("正在加载中...");

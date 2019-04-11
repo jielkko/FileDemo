@@ -109,7 +109,7 @@ public class FileGridActivity extends BaseActivity {
                 getFolderData();
             }
         }.start();*/
-        FilePicker.getInstance().mSelectedFiles.clear();
+
 
         initBtnOk();
     }
