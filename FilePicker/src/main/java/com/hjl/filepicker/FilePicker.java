@@ -171,8 +171,12 @@ public class FilePicker {
 
 
 
-    public void goSelectFile(final Activity mActivity, final int RESULT_CODE) {
 
+    private Activity mActivity;
+    private int RESULT_CODE;
+    public void goSelectFile(Activity mActivity,int RESULT_CODE) {
+        FilePicker.getInstance().mActivity = mActivity;
+        FilePicker.getInstance().RESULT_CODE = RESULT_CODE;
         if (!FilePicker.getInstance().isLoadingFolder) {
             Intent intent = new Intent(mActivity, FileGridActivity.class);
             mActivity.startActivityForResult(intent, RESULT_CODE);
@@ -181,7 +185,8 @@ public class FilePicker {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    goSelectFile(mActivity, RESULT_CODE);
+                    goSelectFile(FilePicker.getInstance().mActivity, FilePicker.getInstance().RESULT_CODE);
+                    goSelectFile(FilePicker.getInstance().mActivity, FilePicker.getInstance().RESULT_CODE);
                 }
             }, 1000);//3秒后执行Runnable中的run方法
 
