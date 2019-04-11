@@ -85,13 +85,21 @@ public class FilesAdapter extends RecyclerView.Adapter {
                     }
                 }
             });*/
+            Boolean isSelected = false;
+            for(FileItem mSelected :  FilePicker.getInstance().mSelectedFiles){
+                if(mSelected.path.equals(item.path)){
+                    isSelected = true;
+                }
 
-            if (item.isSelected == 0) {
-                //未选中
-                itemViewHolder.mIsChooseIcon.setImageDrawable(itemViewHolder.mIcCheckBoxNormal);
-            } else {
+            }
+            if (isSelected) {
                 //已选中
                 itemViewHolder.mIsChooseIcon.setImageDrawable(itemViewHolder.mIcCheckBoxChecked);
+
+            } else {
+
+                //未选中
+                itemViewHolder.mIsChooseIcon.setImageDrawable(itemViewHolder.mIcCheckBoxNormal);
             }
 
             itemViewHolder.mContainer.setOnClickListener(new View.OnClickListener() {
@@ -99,19 +107,26 @@ public class FilesAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     int layoutPosition = itemViewHolder.getLayoutPosition();
 
+                    Boolean isSelected = false;
+                    for(FileItem mSelected :  FilePicker.getInstance().mSelectedFiles){
+                        if(mSelected.path.equals(mData.get(layoutPosition).path)){
+                            isSelected = true;
+                        }
+
+                    }
                     //Toast.makeText(mContext, "点击" + layoutPosition, Toast.LENGTH_SHORT).show();
-                    if (mData.get(layoutPosition).isSelected == 0) {
+                    if (isSelected) {
+                        //已选中
+                        FilePicker.getInstance().mSelectedFiles.remove(mData.get(layoutPosition));
+                        mData.get(layoutPosition).isSelected = 0;
+                        FilePicker.getInstance().setSelected(mListType,layoutPosition,0);
+                    } else {
                         //未选中
                         if (FilePicker.getInstance().mSelectedFiles.size() < FilePicker.getInstance().selectLimit) {
                             FilePicker.getInstance().mSelectedFiles.add(mData.get(layoutPosition));
                             mData.get(layoutPosition).isSelected = 1;
                             FilePicker.getInstance().setSelected(mListType,layoutPosition,1);
                         }
-                    } else {
-                        //已选中
-                        FilePicker.getInstance().mSelectedFiles.remove(mData.get(layoutPosition));
-                        mData.get(layoutPosition).isSelected = 0;
-                        FilePicker.getInstance().setSelected(mListType,layoutPosition,0);
                     }
                     notifyItemChanged(layoutPosition);
 

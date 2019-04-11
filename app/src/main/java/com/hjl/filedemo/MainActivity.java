@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FilePicker.getInstance().clearSelectFiles();
+
                 FilePicker.getInstance().goSelectFile(MainActivity.this,RESULT_CODE);
             }
         });

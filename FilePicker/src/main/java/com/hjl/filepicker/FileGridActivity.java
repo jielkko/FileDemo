@@ -130,6 +130,7 @@ public class FileGridActivity extends BaseActivity {
                     intent.putExtra(FilePicker.EXTRA_RESULT_FILES, FilePicker.getInstance().mSelectedFiles);
                     setResult(FilePicker.RESULT_CODE_FILES, intent);   //
                     finish();
+                    FilePicker.getInstance().mSelectedFiles.clear();
                 }
             }
         });
