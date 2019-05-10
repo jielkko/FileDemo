@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hjl.filepicker.bean.FileItem;
 import com.hjl.filepicker.utils.DataUtil;
@@ -198,6 +199,10 @@ public class FilePicker {
     public Boolean isLoadingFolder = false;
     public Boolean isUpdateDate = false;
     ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    //创建fixed线程池
+
+    final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
     /**
      * 遍历文件夹中资源
      */
@@ -215,17 +220,30 @@ public class FilePicker {
                 }
             }).start();*/
 
-            Runnable syncRunnable = new Runnable() {
+
+
+        /*    Runnable syncRunnable = new Runnable() {
+                @Override
+                public void run() {
+
+                    scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
+                }
+            };
+            executorService.execute(syncRunnable);*/
+
+
+            Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
                 }
             };
-            executorService.execute(syncRunnable);
+            fixedThreadPool.execute(runnable);
         }
 
 
     }
+
 
     /**
      * 非递归
