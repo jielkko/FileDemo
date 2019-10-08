@@ -3,6 +3,7 @@ package com.hjl.filepicker;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
@@ -235,7 +236,10 @@ public class FilePicker {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
+                    Log.d(TAG, "储存路径: "+Environment.getExternalStorageDirectory() .toString());
+                    scanDirNoRecursion(Environment.getExternalStorageDirectory() .toString());
+
+
                 }
             };
             fixedThreadPool.execute(runnable);
@@ -243,7 +247,20 @@ public class FilePicker {
 
 
     }
-
+    /**
+     * 获取手机可存储路径
+     * @param context 上下文
+     * @return 手机可存储路径
+     */
+    public static String getRootPath(Context context) {
+        // 是否有SD卡
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)
+                || !Environment.isExternalStorageRemovable()) {
+            return context.getExternalCacheDir().getPath(); // 有
+        } else {
+            return context.getCacheDir().getPath(); // 无
+        }
+    }
 
     /**
      * 非递归
@@ -333,10 +350,10 @@ public class FilePicker {
 
 
 
-                Collections.sort(FilePicker.getInstance().docList, com);
+                /*Collections.sort(FilePicker.getInstance().docList, com);
                 Collections.sort(FilePicker.getInstance().pptList, com);
                 Collections.sort(FilePicker.getInstance().xlsList, com);
-                Collections.sort(FilePicker.getInstance().pdfList, com);
+                Collections.sort(FilePicker.getInstance().pdfList, com);*/
                 isLoadingFolder = false;
             } else {
                 System.out.println(tmp);

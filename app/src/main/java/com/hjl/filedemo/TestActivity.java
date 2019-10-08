@@ -32,35 +32,21 @@ public class TestActivity extends AppCompatActivity {
 
 
         FilePicker.getInstance().selectLimit = 9;
-        FilePicker.getInstance().getFolderData();
+        //FilePicker.getInstance().getFolderData();
         mBtn1 = (Button) findViewById(R.id.btn1);
         mBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                goFile();
+                Intent intent = new Intent(TestActivity.this, FileGridActivity.class);
+                startActivityForResult(intent, RESULT_CODE);
 
             }
         });
 
     }
 
-    private void goFile(){
-        if (!FilePicker.getInstance().isLoadingFolder) {
-            Intent intent = new Intent(TestActivity.this, FileGridActivity.class);
-            startActivityForResult(intent, RESULT_CODE);
 
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    goFile();
-                }
-            }, 1000);//3秒后执行Runnable中的run方法
-
-        }
-    }
 
 
 
