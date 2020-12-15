@@ -1,8 +1,10 @@
 package com.hjl.filepicker;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -62,24 +64,33 @@ public class FileGridActivity extends BaseActivity {
     private FilesFragment mFragment2;
     private FilesFragment mFragment3;
     private FilesFragment mFragment4;
-
+    private FilesFragment mFragment5;
 
     private ImageView mBtnBack;
     private TextView mTvDes;
+    private TextView mSort;
     private Button mBtnOk;
     private TabLayout mTabLayout;
     private CustomViewPager mViewPager;
+
 
     private ProgressDialog progressDialog;
 
     private void initFindViewById() {
         mBtnBack = (ImageView) findViewById(R.id.btn_back);
         mTvDes = (TextView) findViewById(R.id.tv_des);
+        mSort = (TextView) findViewById(R.id.sort);
         mBtnOk = (Button) findViewById(R.id.btn_ok);
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (CustomViewPager) findViewById(R.id.view_pager);
 
 
+        mSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectSort();
+            }
+        });
     }
 
     @Override
@@ -93,8 +104,6 @@ public class FileGridActivity extends BaseActivity {
     public void initView() {
         EventBus.getDefault().register(this);
         mActivity = FileGridActivity.this;
-
-
 
 
         initFindViewById();
@@ -119,6 +128,33 @@ public class FileGridActivity extends BaseActivity {
 
         initBtnOk();
     }
+
+    final String[] items4 = new String[]{"名称正序", "名称倒序", "时间正序", "时间倒序", "大小正序", "大小倒序"};//创建item
+    AlertDialog alertDialog4;
+    private int checkedItem = 0;
+
+    private void selectSort() {
+        alertDialog4 = new AlertDialog.Builder(this)
+                .setTitle("选择排序")
+                .setSingleChoiceItems(items4, checkedItem, new DialogInterface.OnClickListener() {//添加单选框
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        checkedItem = i;
+                        mSort.setText(items4[checkedItem]);
+                        mFragment1.RefreshDate(checkedItem);
+                        mFragment2.RefreshDate(checkedItem);
+                        mFragment3.RefreshDate(checkedItem);
+                        mFragment4.RefreshDate(checkedItem);
+
+
+                        alertDialog4.dismiss();
+                    }
+                })
+                .create();
+        alertDialog4.show();
+
+    }
+
 
     @Override
     protected void setEvent() {
@@ -172,19 +208,23 @@ public class FileGridActivity extends BaseActivity {
 
     //doc,ppt,xls,pdf
     private void initTabView() {
-        if(mAdapter == null ){
+        if (mAdapter == null) {
             mTitles.add("doc");
             mTitles.add("ppt");
             mTitles.add("xls");
             mTitles.add("pdf");
+            //mTitles.add("video");
             mFragment1 = FilesFragment.indexInstance(mTitles.get(0));
             mFragment2 = FilesFragment.indexInstance(mTitles.get(1));
             mFragment3 = FilesFragment.indexInstance(mTitles.get(2));
             mFragment4 = FilesFragment.indexInstance(mTitles.get(3));
+            //mFragment5 = FilesFragment.indexInstance(mTitles.get(4));
             mFragments.add(mFragment1);
             mFragments.add(mFragment2);
             mFragments.add(mFragment3);
             mFragments.add(mFragment4);
+            //mFragments.add(mFragment5);
+
 
             mAdapter = new fragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
             mViewPager.setAdapter(mAdapter);
@@ -241,14 +281,12 @@ public class FileGridActivity extends BaseActivity {
     };    //图片被添加的时间，long型  1450518608
 
 
-
-
     private void initFiles() {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "搜索开始时间: "+DataUtil.getNewName());
+                Log.d(TAG, "搜索开始时间: " + DataUtil.getNewName());
 //                结果：
 //                doc :: application/msword
 //                docx :: application/vnd.openxmlformats-officedocument.wordprocessingml.document
@@ -265,7 +303,6 @@ public class FileGridActivity extends BaseActivity {
                 //String[] selectionArgs = new String[]{"text/plain", "application/msword", "application/pdf", "application/vnd.ms-powerpoint", "application/vnd.ms-excel"};
 
                 FilePicker.getInstance().clearList();
-
 
 
                 String[] selectionArgs = new String[]{
@@ -368,10 +405,9 @@ public class FileGridActivity extends BaseActivity {
                    }*/
 
 
-
                 }
 
-                Log.d(TAG, "搜索结束时间: "+DataUtil.getNewName());
+                Log.d(TAG, "搜索结束时间: " + DataUtil.getNewName());
 
 
                 Message message = new Message();

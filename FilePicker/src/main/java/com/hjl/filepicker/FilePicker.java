@@ -36,7 +36,7 @@ public class FilePicker {
     public ArrayList<FileItem> pptList = new ArrayList<>();    //集合
     public ArrayList<FileItem> xlsList = new ArrayList<>();    //集合
     public ArrayList<FileItem> pdfList = new ArrayList<>();    //集合
-
+    public ArrayList<FileItem> videoList = new ArrayList<>();    //集合
 
     public int selectLimit = 9;    //最多选择
     private static FilePicker mInstance;
@@ -104,6 +104,9 @@ public class FilePicker {
         if (text.indexOf("pdf") != -1) {
             list.add("application/pdf");
         }
+//        if (text.indexOf("mp4") != -1 || text.indexOf("avi") != -1) {
+//            list.add("application/pdf");
+//        }
         String[] selectionArgs = new String[list.size()];
         for (int i = 0; i < list.size(); i++) {
             selectionArgs[i] = list.get(i);
@@ -130,6 +133,10 @@ public class FilePicker {
         if (text.equals("pdf")) {
             return FilePicker.getInstance().pdfList;
         }
+        if (text.equals("video")) {
+            return FilePicker.getInstance().videoList;
+        }
+
         return FilePicker.getInstance().mAllFiles;
     }
 
@@ -150,6 +157,18 @@ public class FilePicker {
         if (text.equals("pdf")) {
             FilePicker.getInstance().pdfList.get(layoutPosition).isSelected = isSelected;
         }
+        if (
+                text.indexOf(".mp4") != -1
+                        || text.indexOf(".avi") != -1
+                        || text.indexOf(".3gp") != -1
+                        || text.indexOf(".flv") != -1
+                        || text.indexOf(".mkv") != -1
+                        || text.indexOf(".mov") != -1
+                        || text.indexOf(".rmvb") != -1
+                        || text.indexOf(".wmv") != -1
+        ) {
+            FilePicker.getInstance().videoList.get(layoutPosition).isSelected = isSelected;
+        }
     }
 
     public static void clearList() {
@@ -159,7 +178,7 @@ public class FilePicker {
         FilePicker.getInstance().pptList.clear();
         FilePicker.getInstance().xlsList.clear();
         FilePicker.getInstance().pdfList.clear();
-
+        FilePicker.getInstance().videoList.clear();
     }
 
     public static void clearSelectFiles() {
@@ -172,11 +191,10 @@ public class FilePicker {
     }
 
 
-
-
     private Activity mActivity;
     private int RESULT_CODE;
-    public void goSelectFile(Activity mActivity,int RESULT_CODE) {
+
+    public void goSelectFile(Activity mActivity, int RESULT_CODE) {
         FilePicker.getInstance().mActivity = mActivity;
         FilePicker.getInstance().RESULT_CODE = RESULT_CODE;
         if (!FilePicker.getInstance().isLoadingFolder) {
@@ -204,12 +222,13 @@ public class FilePicker {
     //创建fixed线程池
 
     final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+
     /**
      * 遍历文件夹中资源
      */
     public void getFolderData() {
 
-        if(!isLoadingFolder){
+        if (!isLoadingFolder) {
             isLoadingFolder = true;
 
 
@@ -236,8 +255,8 @@ public class FilePicker {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    Log.d(TAG, "储存路径: "+Environment.getExternalStorageDirectory() .toString());
-                    scanDirNoRecursion(Environment.getExternalStorageDirectory() .toString());
+                    Log.d(TAG, "储存路径: " + Environment.getExternalStorageDirectory().toString());
+                    scanDirNoRecursion(Environment.getExternalStorageDirectory().toString());
 
 
                 }
@@ -247,8 +266,10 @@ public class FilePicker {
 
 
     }
+
     /**
      * 获取手机可存储路径
+     *
      * @param context 上下文
      * @return 手机可存储路径
      */
@@ -315,7 +336,7 @@ public class FilePicker {
                         String imageName = "";
                         if (fileItem.name.length() >= 5) {
                             imageName = fileItem.name.substring(fileItem.name.length() - 5, fileItem.name.length());
-                        }else{
+                        } else {
                             imageName = fileItem.name;
                         }
                         FilePicker.getInstance().mAllFiles.add(fileItem);
@@ -330,6 +351,17 @@ public class FilePicker {
                         }
                         if (imageName.indexOf(".pdf") != -1) {
                             FilePicker.getInstance().pdfList.add(fileItem);
+                        }
+                        if (imageName.indexOf(".mp4") != -1
+                                || imageName.indexOf(".avi") != -1
+                                || imageName.indexOf(".3gp") != -1
+                                || imageName.indexOf(".flv") != -1
+                                || imageName.indexOf(".mkv") != -1
+                                || imageName.indexOf(".mov") != -1
+                                || imageName.indexOf(".rmvb") != -1
+                                || imageName.indexOf(".wmv") != -1
+                        ) {
+                            FilePicker.getInstance().videoList.add(fileItem);
                         }
 
                     /*    if (imageName.indexOf("doc") != -1 || imageName.indexOf("docx") != -1) {

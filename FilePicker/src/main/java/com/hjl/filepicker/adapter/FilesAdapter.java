@@ -21,24 +21,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FilesAdapter extends RecyclerView.Adapter {
+public class FilesAdapter extends  RecyclerView.Adapter  {
 
     private static final int TYPE_TIME = 0;
     private static final int TYPE_ITEM = 1;
     private Context mContext;
-    private List<FileItem> mData = new ArrayList<>();
+    private List<FileItem> mData;
     private String mListType = "";
 
 
-    public FilesAdapter(Context context,String mListType) {
+    public FilesAdapter(Context context, String mListType, List<FileItem> mData) {
         this.mContext = context;
         this.mListType = mListType;
-        this.mData = FilePicker.getInstance().getList(mListType);
+        this.mData = mData;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return TYPE_TIME;
+        return position;
     }
 
     @Override
@@ -46,25 +46,13 @@ public class FilesAdapter extends RecyclerView.Adapter {
         return mData.size();
     }
 
-    public void removeItem(int position) {
-        mData.remove(position);
-        notifyDataSetChanged();
-    }
-
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_ITEM) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_files, parent,
-                    false);
-            return new ItemViewHolder(view);
-        } else if (viewType == TYPE_TIME) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_files, parent,
-                    false);
-            return new ItemViewHolder(view);
-        }
-        return null;
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_files, parent,
+                false);
+        return new ItemViewHolder(view);
     }
 
 
@@ -76,20 +64,13 @@ public class FilesAdapter extends RecyclerView.Adapter {
             final ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mName.setText(item.name);
             itemViewHolder.mIcon.setImageResource(FileUtil.getFileIcon(item.name));
+            itemViewHolder.mSize.setText(FileUtil.fileSizeConver(item.getSize()));
             itemViewHolder.mTime.setText(DataUtil.timeStampToDateString(item.addTime));
 
-           /* itemViewHolder.mContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
-                        int position = itemViewHolder.getLayoutPosition();
-                        mOnItemClickListener.onItemClick(itemViewHolder.mContainer, position);
-                    }
-                }
-            });*/
+
             Boolean isSelected = false;
-            for(FileItem mSelected :  FilePicker.getInstance().mSelectedFiles){
-                if(mSelected.path.equals(item.path)){
+            for (FileItem mSelected : FilePicker.getInstance().mSelectedFiles) {
+                if (mSelected.path.equals(item.path)) {
                     isSelected = true;
                 }
 
@@ -110,8 +91,8 @@ public class FilesAdapter extends RecyclerView.Adapter {
                     int layoutPosition = itemViewHolder.getLayoutPosition();
 
                     Boolean isSelected = false;
-                    for(FileItem mSelected :  FilePicker.getInstance().mSelectedFiles){
-                        if(mSelected.path.equals(mData.get(layoutPosition).path)){
+                    for (FileItem mSelected : FilePicker.getInstance().mSelectedFiles) {
+                        if (mSelected.path.equals(mData.get(layoutPosition).path)) {
                             isSelected = true;
                         }
 
@@ -121,13 +102,13 @@ public class FilesAdapter extends RecyclerView.Adapter {
                         //已选中
                         FilePicker.getInstance().mSelectedFiles.remove(mData.get(layoutPosition));
                         mData.get(layoutPosition).isSelected = 0;
-                        FilePicker.getInstance().setSelected(mListType,layoutPosition,0);
+                        FilePicker.getInstance().setSelected(mListType, layoutPosition, 0);
                     } else {
                         //未选中
                         if (FilePicker.getInstance().mSelectedFiles.size() < FilePicker.getInstance().selectLimit) {
                             FilePicker.getInstance().mSelectedFiles.add(mData.get(layoutPosition));
                             mData.get(layoutPosition).isSelected = 1;
-                            FilePicker.getInstance().setSelected(mListType,layoutPosition,1);
+                            FilePicker.getInstance().setSelected(mListType, layoutPosition, 1);
                         }
                     }
                     notifyItemChanged(layoutPosition);
@@ -143,28 +124,30 @@ public class FilesAdapter extends RecyclerView.Adapter {
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
+
         private LinearLayout mContainer;
         private LinearLayout mIsChooseBtn;
         private ImageView mIsChooseIcon;
         private ImageView mIcon;
         private TextView mName;
+        private TextView mSize;
         private TextView mTime;
-
-
 
 
         //图标素材
         private Drawable mIcCheckBoxChecked;
         private Drawable mIcCheckBoxNormal;
+
         public ItemViewHolder(View view) {
             super(view);
+
             mContainer = (LinearLayout) view.findViewById(R.id.container);
             mIsChooseBtn = (LinearLayout) view.findViewById(R.id.isChoose_btn);
             mIsChooseIcon = (ImageView) view.findViewById(R.id.isChoose_icon);
             mIcon = (ImageView) view.findViewById(R.id.icon);
             mName = (TextView) view.findViewById(R.id.name);
+            mSize = (TextView) view.findViewById(R.id.size);
             mTime = (TextView) view.findViewById(R.id.time);
-
 
             Resources resources = view.getResources();
             mIcCheckBoxChecked = resources.getDrawable(R.drawable.file_check_blue1);

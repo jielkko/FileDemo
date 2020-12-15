@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60sp"
+        android:layout_height="60dp"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
         android:orientation="horizontal"
@@ -21,9 +21,9 @@
             android:id="@+id/isChoose_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
+            android:gravity="center"
             android:padding="16dp">
 
             <ImageView
@@ -52,22 +52,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center|left"
-                android:singleLine="false"
-                android:maxLines="2"
                 android:ellipsize="end"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:singleLine="false"
                 android:textSize="14sp"
-                android:text="张三丰" />
+                tools:text="有一天，角落小伙伴们在常去的角落咖啡厅的地下室里发现了一本旧绘本。正当他们读着绘本，机关突然启动" />
 
-            <TextView
-                android:id="@+id/time"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|left"
-                android:textSize="10sp"
-                android:layout_marginTop="4dp"
-                android:text="2019-02-12 12:33:45" />
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textSize="12sp"
+                    tools:text="12kb" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    tools:text="2019-02-12 12:33:45"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
