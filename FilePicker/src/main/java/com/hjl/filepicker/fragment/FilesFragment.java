@@ -132,30 +132,37 @@ public class FilesFragment extends Fragment {
 
     //刷新数据
     public void RefreshDate() {
-
-    /*    switch (ListSort) {
+        mData.clear();
+        switch (ListSort) {
             case 0:
-                mData = ListNameSort(FilePicker.getInstance().getList(mListType), 1);
+                mData.addAll(ListNameSort(FilePicker.getInstance().getList(mListType), 1));
                 break;
             case 1:
-                mData = ListNameSort(FilePicker.getInstance().getList(mListType), -1);
+                mData.addAll(ListNameSort(FilePicker.getInstance().getList(mListType), -1));
+
                 break;
             case 2:
-                mData = ListTimeSort(FilePicker.getInstance().getList(mListType), 1);
+                mData.addAll(ListTimeSort(FilePicker.getInstance().getList(mListType), 1));
+
                 break;
             case 3:
-                mData = ListTimeSort(FilePicker.getInstance().getList(mListType), -1);
+                mData.addAll(ListTimeSort(FilePicker.getInstance().getList(mListType), -1));
+
                 break;
             case 4:
-                mData = ListSizeSort(FilePicker.getInstance().getList(mListType), 1);
+
+                mData.addAll(ListSizeSort(FilePicker.getInstance().getList(mListType), 1));
+
                 break;
             case 5:
-                mData = ListSizeSort(FilePicker.getInstance().getList(mListType), -1);
+
+                mData.addAll(ListSizeSort(FilePicker.getInstance().getList(mListType), -1));
+
                 break;
             case 6:
                 break;
-        }*/
-        mData = ListNameSort(FilePicker.getInstance().getList(mListType), 1);
+        }
+
         if (mData.size() > 0) {
             mRecyclerView.setVisibility(View.VISIBLE);
             mHint.setVisibility(View.GONE);
